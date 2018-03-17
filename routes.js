@@ -1,6 +1,7 @@
 let express = require('express')
 let router = express.Router()
 let Cities = require('./controllers/cities')
+let Forecast = require('./controllers/forecast')
 
 console.log("Registro de endpoints de la API")
 
@@ -12,7 +13,11 @@ router.get('/cities', (req, res) => {
 
 console.log("/forecast --> devuelve el pronóstico para los próximos 5 días para una ciudad")
 router.get('/forecast', (req, res) => {
-    res.json({ message: "Not implemented yet "})
+    Forecast.getForecast(req.param('id')).then((forecast) => {
+        res.json(forecast)
+    }).catch((error) => {
+        res.status(404).send(error)
+    })
 })
 
 module.exports = router

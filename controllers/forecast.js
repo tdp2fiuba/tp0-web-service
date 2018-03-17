@@ -40,7 +40,10 @@ module.exports = (() => {
                 weatherDayIcon: midday ? midday.weather[0].icon : undefined,
                 weatherNightMain: midnight ? midnight.weather[0].main : undefined,
                 weatherNightDesc: midnight ? midnight.weather[0].description : undefined,
-                weatherNightIcon: midnight ? midnight.weather[0].icon : undefined
+                weatherNightIcon: midnight ? midnight.weather[0].icon : undefined,
+                humidityDay: midday ? midday.main.humidity : undefined,
+                humidityNight: midnight ? midnight.main.humidity: undefined,
+
             }
 
             if (simplifiedDate.getTime() === simplifiedNow.getTime()) {
@@ -48,7 +51,7 @@ module.exports = (() => {
             } else if ((Math.abs(simplifiedDate.getTime() - simplifiedNow.getTime())) / millisecondsInDay === 1) {
                 dayForecast.date = "Mañana"
             } else {
-                dayForecast.date = daysOfWeek[simplifiedDate.getDay()]
+                dayForecast.date = daysOfWeek[simplifiedDate.getDay()] + " " + simplifiedDate.getDate() + "/" + (simplifiedDate.getMonth() + 1)
             }
 
             parsedForecast.days.push(dayForecast)

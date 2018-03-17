@@ -77,6 +77,6 @@ Tiene 2 endpoints
 
 ### Notas sobre los atributos
 
-* Los campos ´tempDay´, ´weatherDayMain´, ´weatherDayDesc´y ´weatherDayIcon´ son los atributos correspondientes a la respuesta de la API de OpenWeatherMap para el día representado que tiene en el campo ´list.main.dt´ la hora 12. ´tempDay´ corresponde a su valor ´list.main.temp´
-* Idem con los campos ´tempNight´, ´weatherNightMain´, ´weatherNightDesc´y ´weatherNightIcon´, que se toman de la entrada del array `list` cuyo campo `main.dt` tenga hora 00
+* Los campos `tempDay`, `weatherDayMain`, `weatherDayDesc` y `weatherDayIcon` son los atributos correspondientes a la respuesta de la API de OpenWeatherMap para el día representado que tiene en el campo `list.main.dt` la hora 12. `tempDay` corresponde a su valor `list.main.temp`
+* Idem con los campos `tempNight`, `weatherNightMain`, `weatherNightDesc` y `weatherNightIcon`, que se toman de la entrada del array `list` cuyo campo `main.dt` tenga hora 00
 * El campo `date` tiene como posibles fechas "Hoy", "Mañana" o "[Día de la semana] DD/MM" (e.g. "Thu 22/3")

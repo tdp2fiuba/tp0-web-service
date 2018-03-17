@@ -70,6 +70,8 @@ Tiene 2 endpoints
   weatherNightMain: descripción general del tiempo durante la noche,
   weatherNightDesc: descripción particular del tiempo durante la noche,
   weatherNightIcon: ícono representativo del tiempo durante noche,
+  humidityDay: porcentaje de humedad durante el día,
+  humidityNight: porcentaje de humedad durante la noche,
   date: fecha del día
  ]
 }
@@ -77,6 +79,6 @@ Tiene 2 endpoints
 
 ### Notas sobre los atributos
 
-* Los campos `tempDay`, `weatherDayMain`, `weatherDayDesc` y `weatherDayIcon` son los atributos correspondientes a la respuesta de la API de OpenWeatherMap para el día representado que tiene en el campo `list.main.dt` la hora 12. `tempDay` corresponde a su valor `list.main.temp`
-* Idem con los campos `tempNight`, `weatherNightMain`, `weatherNightDesc` y `weatherNightIcon`, que se toman de la entrada del array `list` cuyo campo `main.dt` tenga hora 00
+* Los campos `tempDay`, `weatherDayMain`, `weatherDayDesc`, `weatherDayIcon` y `humidityDat` son los atributos correspondientes a la respuesta de la API de OpenWeatherMap para el día representado que tiene en el campo `list.main.dt` la hora 12. `tempDay` corresponde a su valor `list.main.temp`
+* Idem con los campos `tempNight`, `weatherNightMain`, `weatherNightDesc`, `weatherNightIcon` y `humidityNight`, que se toman de la entrada del array `list` cuyo campo `main.dt` tenga hora 00
 * El campo `date` tiene como posibles fechas "Hoy", "Mañana" o "[Día de la semana] DD/MM" (e.g. "Thu 22/3")

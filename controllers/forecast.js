@@ -28,6 +28,10 @@ module.exports = (() => {
         Object.keys(daysForecast).forEach((day) => {
             // Fecha del pronóstico
             let dateFull = new Date(daysForecast[day][0].dt * 1000)
+            if (dateFull.getHours() === 0) {
+                dateFull.setDate(dateFull.getDate() - 1)
+            }
+
             let simplifiedDate = new Date(dateFull.getFullYear(), dateFull.getMonth(), dateFull.getDate())
             // Fecha actual
             let simplifiedNow = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())

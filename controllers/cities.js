@@ -22,12 +22,25 @@ module.exports = (() => {
                 console.log('Headers: ' + headers.join(" "))
             })
             .on('data', (row) => {
-                cities.push(parseCity(row))
+                if (row.nm !== "") {
+                    cities.push(parseCity(row))
+                }
                 if (cities.length % 500 === 0) {
                     console.log("Parsed " + cities.length + " cities")
                 }
             })
-            .on('end', () => console.log("Finished parsing cities."))
+            .on('end', () => {
+                cities = cities.sort((cityA, cityB) => {  
+                    if (cityA.name > cityB.name) {
+                        return 1
+                    } else if (cityA.name === cityB.name) {
+                        return 0
+                    } else {
+                        return -1
+                    }
+                })
+                console.log("Finished parsing cities.") 
+            })
     }
     const getCities = (page, count) => {
         page = parseInt(page) || 1

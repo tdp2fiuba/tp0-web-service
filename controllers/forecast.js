@@ -6,9 +6,9 @@ let _ = require('lodash')
 const zeroKelvin = 273.15
 const millisecondsInDay = 1000 * 60 * 60 * 24
 const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+const url = 'http://api.openweathermap.org/data/2.5/forecast?id={id}&APPID=' + config.key
 
 module.exports = (() => {
-    const url = 'http://api.openweathermap.org/data/2.5/forecast?id={id}&APPID=' + config.key
 
     const parseForecast = (forecast) => {
         let parsedForecast = { days: [] }
@@ -17,6 +17,11 @@ module.exports = (() => {
         // Se agrupa primero por fecha, luego se busca el pronóstico a las 12hs y a las 24hs entre los valores para cada día
         let daysForecast = _.groupBy(forecast.list, (dayForecast) => { 
             let date = new Date(dayForecast.dt * 1000) // de UNIX timestamp a ES timestamp
+
+            // Si es la entrada correspondiente a la hora 0, la juntamos con los registros del día anterior para hacer la hora "24"
+            if (date.getHours() === 0) {
+                date.setDate(date.getDate() - 1)
+            }
             return date.getFullYear().toString() + (date.getMonth() + 1).toString() + date.getDate().toString() 
         })
         
@@ -33,16 +38,16 @@ module.exports = (() => {
             let midnight = daysForecast[day].find((time) => { return new Date(time.dt * 1000).getHours() === 0 })
             
             let dayForecast = {
-                tempDay: midday ? midday.main.temp - zeroKelvin : undefined,
-                tempNight: midnight ? midnight.main.temp - zeroKelvin : undefined,
-                weatherDayMain: midday ? midday.weather[0].main : undefined,
-                weatherDayDesc: midday ? midday.weather[0].description : undefined,
-                weatherDayIcon: midday ? midday.weather[0].icon : undefined,
-                weatherNightMain: midnight ? midnight.weather[0].main : undefined,
-                weatherNightDesc: midnight ? midnight.weather[0].description : undefined,
-                weatherNightIcon: midnight ? midnight.weather[0].icon : undefined,
-                humidityDay: midday ? midday.main.humidity : undefined,
-                humidityNight: midnight ? midnight.main.humidity: undefined,
+                tempDay: midday ? midday.main.temp - zeroKelvin : null,
+                tempNight: midnight ? midnight.main.temp - zeroKelvin : null,
+                weatherDayMain: midday ? midday.weather[0].main : null,
+                weatherDayDesc: midday ? midday.weather[0].description : null,
+                weatherDayIcon: midday ? midday.weather[0].icon : null,
+                weatherNightMain: midnight ? midnight.weather[0].main : null,
+                weatherNightDesc: midnight ? midnight.weather[0].description : null,
+                weatherNightIcon: midnight ? midnight.weather[0].icon : null,
+                humidityDay: midday ? midday.main.humidity : null,
+                humidityNight: midnight ? midnight.main.humidity: null,
 
             }
 

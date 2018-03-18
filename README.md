@@ -1,6 +1,8 @@
 # Instalación
 
-Luego de bajar el código del repositorio, correr para iniciar el servidor:
+Luego de bajar el código del repositorio, ir a `config.js` y añadir el valor de la API Key de OpenWeatherMap que se encuentra en el task de YouTrack al respecto.
+
+Correr para iniciar el servidor:
 
 ````
 npm install

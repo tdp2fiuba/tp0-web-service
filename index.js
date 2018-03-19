@@ -1,7 +1,7 @@
 let express = require("express")
 let app = express()
 
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 3001
 
 let routes = require('./routes')
 

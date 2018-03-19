@@ -47,11 +47,15 @@ module.exports = (() => {
         count = parseInt(count) || 10
         return cities.slice((page - 1) * count, (page - 1) * count + count)
     }
+    const getCityById = (id) => {
+        return cities.find((city) => { return city.id === id })
+    }
 
     loadCities()
 
     return {
-        getCities: getCities
+        getCities: getCities,
+        getCityById: getCityById
     }
 })()
 
